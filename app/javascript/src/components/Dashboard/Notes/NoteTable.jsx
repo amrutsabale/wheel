@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox } from "neetoui";
+import { Checkbox, Badge, Button } from "neetoui";
 
 export default function NoteTable({
   selectedNoteIds,
@@ -28,13 +28,18 @@ export default function NoteTable({
             </th>
             <th className="text-left">Title</th>
             <th className="text-left">Description</th>
+            <th className="text-center">Tags</th>
+            <th className="text-center">Created Date</th>
+            <th className="text-center">Due Date</th>
+            <th className="text-center">Contact</th>
+            <th className="text-right"></th>
           </tr>
         </thead>
         <tbody>
           {notes.map(note => (
             <tr
               key={note.id}
-              className={"cursor-pointer bg-white hover:bg-gray-50"}
+              className={"group cursor-pointer bg-white hover:bg-gray-50"}
             >
               <td>
                 <Checkbox
@@ -60,6 +65,18 @@ export default function NoteTable({
                 </div>
               </td>
               <td>{note.description}</td>
+              <td className="text-center"><Badge color="blue">{note.tag}</Badge></td>
+              <td className="text-center">{note.created_at}</td>
+              <td className="text-center">
+                {note.due_date ? note.due_date : "--"}
+              </td>
+              <td className="text-center">{note.contact}</td>
+              <td className="text-right opacity-0 group-hover:opacity-100">
+                <div className="flex flex-row space-x-4">
+                  <Button style="icon" icon="ri-pencil-line" />
+                  <Button style="icon" icon="ri-delete-bin-line" />
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>
