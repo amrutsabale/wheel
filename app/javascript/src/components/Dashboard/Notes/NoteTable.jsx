@@ -1,5 +1,6 @@
 import React from "react";
-import { Checkbox, Badge, Button } from "neetoui";
+import { Checkbox, Badge, Button, Avatar, Tooltip } from "neetoui";
+import moment from "moment";
 
 export default function NoteTable({
   selectedNoteIds,
@@ -64,17 +65,23 @@ export default function NoteTable({
                   {note.title}
                 </div>
               </td>
-              <td>{note.description}</td>
+              <td><div className="w-28 truncate">{note.description}</div></td>
               <td className="text-center"><Badge color="blue">{note.tag}</Badge></td>
-              <td className="text-center">{note.created_at}</td>
+              <td className="text-center">{moment(note.created_at).format('ll')}</td>
               <td className="text-center">
-                {note.due_date ? note.due_date : "--"}
+                {note.due_date ? moment(note.due_date).format('ll') : "--"}
               </td>
-              <td className="text-center">{note.contact}</td>
-              <td className="text-right opacity-0 group-hover:opacity-100">
-                <div className="flex flex-row space-x-4">
-                  <Button style="icon" icon="ri-pencil-line" />
-                  <Button style="icon" icon="ri-delete-bin-line" />
+              <td className="flex justify-center">
+                <Avatar size={36} contact={{ name: note.contact }} />
+              </td>
+              <td className="opacity-0 group-hover:opacity-100">
+                <div className="flex flex-row space-x-4 justify-end">
+                  <Tooltip content={"Edit"} position="bottom">
+                    <Button style="icon" icon="ri-pencil-line" />
+                  </Tooltip>
+                  <Tooltip content={"Delete"} position="bottom">
+                    <Button style="icon" icon="ri-delete-bin-line" />
+                  </Tooltip>
                 </div>
               </td>
             </tr>
