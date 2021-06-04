@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import notesApi from "apis/notes";
+// import notesApi from "apis/notes";
 import { Button, PageLoader } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
@@ -10,32 +10,36 @@ import NewNotePane from "./NewNotePane";
 import DeleteAlert from "./DeleteAlert";
 
 //mock dummy notes
-const mockNotes = [{
-  id: "1",
-  title: "Goto to temple",
-  description: "Forward all internal mails",
-  tag: { label: "internal", color: "blue" },
-  created_at: "Apr 10, 2021",
-  due_date: "Apr 10, 2021",
-  contact: "Amrut Sabale"
-},
-{
-  id: "2",
-  title: "Read new book",
-  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque nobis est quidem eos doloribus corrupti itaque accusantium culpa, officia iste, corporis reprehenderit animi beatae placeat odio eaque id ratione dolorum!",
-  tag: { label: "Agile Workflow", color: "green" },
-  created_at: "Apr 10, 2021",
-  contact: "John Sabale"
-},
-{
-  id: "3",
-  title: "Feedback",
-  description: "Feedback V2.0 dsdsd jjjj",
-  tag: { label: "Bug", color: "red" },
-  created_at: "Apr 10, 2021",
-  due_date: "Apr 10, 2021",
-  contact: "Tom Sabale"
-}];
+const mockNotes = [
+  {
+    id: "1",
+    title: "Goto to temple",
+    description: "Forward all internal mails",
+    tag: { label: "Internal", color: "blue" },
+    createdAt: "Apr 10, 2021",
+    dueDate: "Apr 10, 2021",
+    contact: { value: "tom hunk", label: "Tom hunk" },
+  },
+  {
+    id: "2",
+    title: "Read new book",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque nobis est quidem eos doloribus corrupti itaque accusantium culpa, officia iste, corporis reprehenderit animi beatae placeat odio eaque id ratione dolorum!",
+    tag: { label: "Agile Workflow", color: "green" },
+    createdAt: "Apr 10, 2021",
+    dueDate: "",
+    contact: { value: "amrut sabale", label: "Amrut Sabale" },
+  },
+  {
+    id: "3",
+    title: "Feedback",
+    description: "Feedback V2.0 dsdsd jjjj",
+    tag: { label: "Bug", color: "red" },
+    createdAt: "Apr 10, 2021",
+    dueDate: "Apr 10, 2021",
+    contact: { value: "john smith", label: "John smith" },
+  },
+];
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
@@ -88,20 +92,20 @@ const Notes = () => {
               onClick: () => setShowDeleteAlert(true),
               disabled: !selectedNoteIds.length,
             }}
-            sortProps={
-              {
-                option: { value: "title", label: "Name" },
-                options: [{ value: "created_date", label: "Created date" }, { value: "title", label: "Name" }],
-                onClick: () => { }
-              }
-            }
+            sortProps={{
+              option: { value: "title", label: "Name" },
+              options: [
+                { value: "created_date", label: "Created date" },
+                { value: "title", label: "Name" },
+              ],
+              onClick: () => {},
+            }}
             paginationProps={{
               pageNo: 1,
               pageSize: 10,
-              count: 50
+              count: 50,
             }}
-            toggleFilter={() => { }}
-
+            toggleFilter={() => {}}
           />
           <NoteTable
             selectedNoteIds={selectedNoteIds}
