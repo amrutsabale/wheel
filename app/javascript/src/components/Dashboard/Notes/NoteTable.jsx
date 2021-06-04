@@ -27,13 +27,13 @@ export default function NoteTable({
                 }}
               />
             </th>
-            <th className="text-left">Title</th>
-            <th className="text-left">Description</th>
-            <th className="text-center">Tags</th>
-            <th className="text-center">Created Date</th>
-            <th className="text-center">Due Date</th>
-            <th className="text-center">Contact</th>
-            <th className="text-right"></th>
+            <th className="text-left text-gray-500">Title</th>
+            <th className="text-left text-gray-500"> Description</th>
+            <th className="text-center text-gray-500">Tags</th>
+            <th className="text-center text-gray-500">Created Date</th>
+            <th className="text-center text-gray-500">Due Date</th>
+            <th className="text-center text-gray-500">Contact</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -61,12 +61,12 @@ export default function NoteTable({
                 />
               </td>
               <td>
-                <div className="flex flex-row items-center justify-start text-gray-900">
+                <div className="flex flex-row items-center justify-start text-purple-500">
                   {note.title}
                 </div>
               </td>
               <td><div className="w-28 truncate">{note.description}</div></td>
-              <td className="text-center"><Badge color="blue">{note.tag}</Badge></td>
+              <td className="text-center"><Badge color={note.tag.color || "gray"}>{note.tag.label}</Badge></td>
               <td className="text-center">{moment(note.created_at).format('ll')}</td>
               <td className="text-center">
                 {note.due_date ? moment(note.due_date).format('ll') : "--"}
