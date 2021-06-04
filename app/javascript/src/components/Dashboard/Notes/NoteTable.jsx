@@ -5,8 +5,14 @@ import moment from "moment";
 export default function NoteTable({
   selectedNoteIds,
   setSelectedNoteIds,
+  setShowDeleteAlert,
   notes = [],
 }) {
+  const handleNoteDelete = (noteId) => {
+    setShowDeleteAlert(true);
+    setSelectedNoteIds([noteId]);
+  }
+
   return (
     <div className="w-full px-4">
       <table className="nui-table nui-table--checkbox">
@@ -80,7 +86,7 @@ export default function NoteTable({
                     <Button style="icon" icon="ri-pencil-line" />
                   </Tooltip>
                   <Tooltip content={"Delete"} position="bottom">
-                    <Button style="icon" icon="ri-delete-bin-line" />
+                    <Button style="icon" icon="ri-delete-bin-line" onClick={() => handleNoteDelete(note.id)} />
                   </Tooltip>
                 </div>
               </td>

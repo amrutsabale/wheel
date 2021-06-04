@@ -4,6 +4,7 @@ import notesApi from "apis/notes";
 
 export default function DeleteAlert({ refetch, onClose, selectedNoteIds }) {
   const [deleting, setDeleting] = useState(false);
+  const isSingleNoteDeletion = selectedNoteIds.length === 1;
   const handleDelete = async () => {
     try {
       setDeleting(true);
@@ -24,7 +25,7 @@ export default function DeleteAlert({ refetch, onClose, selectedNoteIds }) {
       showFooter
       submitButtonProps={{
         style: "danger",
-        label: "Continue anyway",
+        label: isSingleNoteDeletion ? "Delete" : "Continue anyway",
         loading: deleting,
         onClick: handleDelete,
       }}
@@ -37,10 +38,13 @@ export default function DeleteAlert({ refetch, onClose, selectedNoteIds }) {
 
         <div className="ml-4">
           <h3 className="mb-2 text-lg font-medium text-gray-700">
-            Delete {selectedNoteIds.length} notes?
+            Delete{" "}
+            {
+              isSingleNoteDeletion ? "Note" : `${selectedNoteIds.length} notes?`
+            }
           </h3>
           <div className="text-sm leading-5 text-gray-500">
-            Are you sure you want to continue? This cannot be undone.
+            {isSingleNoteDeletion ? "Are you sure you want to delete the note? All of your data will be permanently removed from our database forever. This action cannot be undone." : "Are you sure you want to continue? This cannot be undone."}
           </div>
         </div>
       </div>
