@@ -8,10 +8,10 @@ export default function NoteTable({
   setShowDeleteAlert,
   notes = [],
 }) {
-  const handleNoteDelete = (noteId) => {
+  const handleNoteDelete = noteId => {
     setShowDeleteAlert(true);
     setSelectedNoteIds([noteId]);
-  }
+  };
 
   return (
     <div className="w-full px-4">
@@ -71,14 +71,26 @@ export default function NoteTable({
                   {note.title}
                 </div>
               </td>
-              <td><div className="w-28 truncate">{note.description}</div></td>
-              <td className="text-center"><Badge color={note.tag.color || "gray"}>{note.tag.label}</Badge></td>
-              <td className="text-center">{moment(note.created_at).format('ll')}</td>
+              <td>
+                <div className="w-28 truncate">{note.description}</div>
+              </td>
               <td className="text-center">
-                {note.due_date ? moment(note.due_date).format('ll') : "--"}
+                <Badge color={note.tag?.color || "gray"}>
+                  {note.tag?.label}
+                </Badge>
+              </td>
+              <td className="text-center">
+                {moment(note.createdAt).format("ll")}
+              </td>
+              <td className="text-center">
+                {note.dueDate ? moment(note.dueDate).format("ll") : "--"}
               </td>
               <td className="flex justify-center">
-                <Avatar size={36} contact={{ name: note.contact }} />
+                <Avatar
+                  size={36}
+                  bgClassName="bg-purple-300"
+                  contact={{ name: note.contact?.label }}
+                />
               </td>
               <td className="opacity-0 group-hover:opacity-100">
                 <div className="flex flex-row space-x-4 justify-end">
@@ -86,7 +98,11 @@ export default function NoteTable({
                     <Button style="icon" icon="ri-pencil-line" />
                   </Tooltip>
                   <Tooltip content={"Delete"} position="bottom">
-                    <Button style="icon" icon="ri-delete-bin-line" onClick={() => handleNoteDelete(note.id)} />
+                    <Button
+                      style="icon"
+                      icon="ri-delete-bin-line"
+                      onClick={() => handleNoteDelete(note.id)}
+                    />
                   </Tooltip>
                 </div>
               </td>
