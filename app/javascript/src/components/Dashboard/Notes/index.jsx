@@ -106,16 +106,16 @@ const Notes = () => {
           <NoteTable
             selectedNoteIds={selectedNoteIds}
             setSelectedNoteIds={setSelectedNoteIds}
+            setShowDeleteAlert={setShowDeleteAlert}
             notes={notes}
           />
         </>
       ) : (
         <EmptyState
           image={EmptyNotesListImage}
-          title="Looks like you don't have any notes!"
-          subtitle="Add your notes to send customized emails to them."
+          title="Your Notes list is empty"
           primaryAction={() => setShowNewNotePane(true)}
-          primaryActionLabel="Add New Note"
+          primaryActionLabel="Add Note"
         />
       )}
       <NewNotePane
