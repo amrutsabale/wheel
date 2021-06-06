@@ -6,6 +6,8 @@ module.exports = {
       components: "src/components",
       contexts: "src/contexts",
       reducers: "src/reducers",
+      constants: "src/constants",
+      utils: "src/utils",
       neetoui: "@bigbinary/neetoui",
     },
   },

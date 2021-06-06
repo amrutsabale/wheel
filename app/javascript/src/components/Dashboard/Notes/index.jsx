@@ -4,42 +4,11 @@ import { Button, PageLoader } from "neetoui";
 import EmptyState from "components/Common/EmptyState";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Header, SubHeader } from "neetoui/layouts";
+import { mockNotes } from "constants/notes";
 
 import NoteTable from "./NoteTable";
 import NewNotePane from "./NewNotePane";
 import DeleteAlert from "./DeleteAlert";
-
-//mock dummy notes
-const mockNotes = [
-  {
-    id: "1",
-    title: "Goto to temple",
-    description: "Forward all internal mails",
-    tag: { label: "Internal", color: "blue" },
-    createdAt: "Apr 10, 2021",
-    dueDate: "Apr 10, 2021",
-    contact: { value: "tom hunk", label: "Tom hunk" },
-  },
-  {
-    id: "2",
-    title: "Read new book",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque nobis est quidem eos doloribus corrupti itaque accusantium culpa, officia iste, corporis reprehenderit animi beatae placeat odio eaque id ratione dolorum!",
-    tag: { label: "Agile Workflow", color: "green" },
-    createdAt: "Apr 10, 2021",
-    dueDate: "",
-    contact: { value: "amrut sabale", label: "Amrut Sabale" },
-  },
-  {
-    id: "3",
-    title: "Feedback",
-    description: "Feedback V2.0 dsdsd jjjj",
-    tag: { label: "Bug", color: "red" },
-    createdAt: "Apr 10, 2021",
-    dueDate: "Apr 10, 2021",
-    contact: { value: "john smith", label: "John smith" },
-  },
-];
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
@@ -56,7 +25,6 @@ const Notes = () => {
   const fetchNotes = async () => {
     try {
       setLoading(true);
-      // const response = await notesApi.fetch();
       setNotes(mockNotes);
     } catch (error) {
       logger.error(error);

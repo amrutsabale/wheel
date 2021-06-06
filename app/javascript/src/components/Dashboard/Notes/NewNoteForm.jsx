@@ -4,6 +4,7 @@ import { Formik, Form } from "formik";
 import { Input, Textarea, Select } from "neetoui/formik";
 import { Button, DateInput, Label, Switch } from "neetoui";
 import notesApi from "apis/notes";
+import { contactOptions, tagOptions } from "constants/notes";
 
 export default function NewNoteForm({ onClose, refetch }) {
   const [isDueDateRequired, setIsDueDateRequired] = useState(false);
@@ -26,9 +27,9 @@ export default function NewNoteForm({ onClose, refetch }) {
     <Formik
       initialValues={{
         title: "",
-        tags: {},
+        tags: "",
         description: "",
-        contact: {},
+        contact: "",
       }}
       onSubmit={handleSubmit}
       validationSchema={yup.object({
@@ -40,20 +41,11 @@ export default function NewNoteForm({ onClose, refetch }) {
         <Form>
           <Input label="Note Title" name="title" className="mb-6" />
           <Select
-            className="mb-6"
             label="Tags"
-            defaultValue={{ value: "internal", label: "Internal" }}
             placeholder="Select a tag"
             name="tags"
-            options={[
-              { value: "internal", label: "Internal", color: "blue" },
-              {
-                value: "agile_workflow",
-                label: "Agile Workflow",
-                color: "green",
-              },
-              { value: "bug", label: "Bug", color: "red" },
-            ]}
+            options={tagOptions}
+            className="mb-6"
           />
           <Textarea
             label="Note Description"
@@ -62,16 +54,11 @@ export default function NewNoteForm({ onClose, refetch }) {
             className="mb-6"
           />
           <Select
-            className="mb-6"
             label="Assigned Contact"
-            defaultValue={{ value: "internal", label: "internal" }}
             placeholder="Select a contact"
             name="contact"
-            options={[
-              { value: "tom hunk", label: "Tom hunk" },
-              { value: "amrut sabale", label: "Amrut Sabale" },
-              { value: "john smith", label: "John smith" },
-            ]}
+            options={contactOptions}
+            className="mb-6"
           />
           <div className="mb-80">
             <div className="flex justify-between mb-6">
