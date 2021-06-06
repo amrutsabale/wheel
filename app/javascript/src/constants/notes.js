@@ -3,36 +3,36 @@ const mockNotes = [
     id: "1",
     title: "Goto to temple",
     description: "Forward all internal mails",
-    tag: "internal",
+    tag: { value: "internal", label: "Internal" },
     createdAt: "Apr 10, 2021",
     dueDate: "Apr 10, 2021",
-    contact: "tom_hunk",
+    contact: { value: "tom_hunk", label: "Tom hunk" },
   },
   {
     id: "2",
     title: "Read new book",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloremque nobis est quidem eos doloribus corrupti itaque accusantium culpa, officia iste, corporis reprehenderit animi beatae placeat odio eaque id ratione dolorum!",
-    tag: "agile_workflow",
+    tag: { label: "Agile Workflow", value: "agile_workflow" },
     createdAt: "Apr 10, 2021",
     dueDate: "",
-    contact: "amrut_sabale",
+    contact: { value: "amrut_sabale", label: "Amrut Sabale" },
   },
   {
     id: "3",
     title: "Feedback",
     description: "Feedback V2.0 dsdsd jjjj",
-    tag: "bug",
+    tag: { value: "bug", label: "Bug" },
     createdAt: "Apr 10, 2021",
     dueDate: "Apr 10, 2021",
-    contact: "john_smith",
+    contact: { value: "john_smith", label: "John smith" },
   },
 ];
 
-const tagsInfo = {
-  internal: { color: "blue", label: "Internal" },
-  agile_workflow: { color: "green", label: "Agile Workflow" },
-  bug: { color: "red", label: "Bug" },
+const tagsColors = {
+  internal: "blue",
+  agile_workflow: "green",
+  bug: "red",
 };
 
 const tagOptions = [
@@ -44,16 +44,10 @@ const tagOptions = [
   { value: "bug", label: "Bug" },
 ];
 
-const contactInfo = {
-  tom_hunk: "Tom Hunk",
-  amrut_sabale: "Amrut Sabale",
-  john_smith: "John Smith",
-};
-
 const contactOptions = [
   { value: "tom_hunk", label: "Tom hunk" },
   { value: "amrut_sabale", label: "Amrut Sabale" },
   { value: "john_smith", label: "John smith" },
 ];
 
-export { mockNotes, tagsInfo, tagOptions, contactInfo, contactOptions };
+export { mockNotes, tagsColors, tagOptions, contactOptions };

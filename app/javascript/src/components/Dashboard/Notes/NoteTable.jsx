@@ -1,6 +1,6 @@
 import React from "react";
 import { Checkbox, Badge, Button, Avatar, Tooltip } from "neetoui";
-import { tagsInfo, contactInfo } from "constants/notes";
+import { tagsColors } from "constants/notes";
 import { formattedDate } from "utils/date";
 
 export default function NoteTable({
@@ -79,8 +79,8 @@ export default function NoteTable({
                 <div className="w-28 truncate">{note.description}</div>
               </td>
               <td className="text-center">
-                <Badge color={tagsInfo[note.tag]?.color}>
-                  {tagsInfo[note.tag]?.label}
+                <Badge color={tagsColors[note.tag.value]}>
+                  {note.tag.label}
                 </Badge>
               </td>
               <td className="text-center">{formattedDate(note.createdAt)}</td>
@@ -91,7 +91,7 @@ export default function NoteTable({
                 <Avatar
                   size={36}
                   bgClassName="bg-purple-300"
-                  contact={{ name: contactInfo[note.contact] }}
+                  contact={{ name: note.contact.label }}
                 />
               </td>
               <td className="opacity-0 group-hover:opacity-100">
