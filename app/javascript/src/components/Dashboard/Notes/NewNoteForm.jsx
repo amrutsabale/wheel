@@ -27,9 +27,9 @@ export default function NewNoteForm({ onClose, refetch }) {
     <Formik
       initialValues={{
         title: "",
-        tags: "",
+        tags: {},
         description: "",
-        contact: "",
+        contact: {},
       }}
       onSubmit={handleSubmit}
       validationSchema={yup.object({
