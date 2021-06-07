@@ -1,6 +1,7 @@
 import React from "react";
 import { Checkbox, Badge, Button, Avatar, Tooltip } from "neetoui";
-import moment from "moment";
+import { tagsColors } from "constants/notes";
+import { formattedDate } from "utils/date";
 
 export default function NoteTable({
   selectedNoteIds,
@@ -67,29 +68,30 @@ export default function NoteTable({
                 />
               </td>
               <td>
-                <div className="flex flex-row items-center justify-start text-purple-500">
-                  {note.title}
-                </div>
+                <Button
+                  type="link"
+                  className="text-purple-500"
+                  label={note.title}
+                  style="text"
+                />
               </td>
               <td>
                 <div className="w-28 truncate">{note.description}</div>
               </td>
               <td className="text-center">
-                <Badge color={note.tag?.color || "gray"}>
-                  {note.tag?.label}
+                <Badge color={tagsColors[note.tag.value]}>
+                  {note.tag.label}
                 </Badge>
               </td>
+              <td className="text-center">{formattedDate(note.createdAt)}</td>
               <td className="text-center">
-                {moment(note.createdAt).format("ll")}
-              </td>
-              <td className="text-center">
-                {note.dueDate ? moment(note.dueDate).format("ll") : "--"}
+                {note.dueDate ? formattedDate(note.dueDate) : "--"}
               </td>
               <td className="flex justify-center">
                 <Avatar
                   size={36}
                   bgClassName="bg-purple-300"
-                  contact={{ name: note.contact?.label }}
+                  contact={{ name: note.contact.label }}
                 />
               </td>
               <td className="opacity-0 group-hover:opacity-100">
