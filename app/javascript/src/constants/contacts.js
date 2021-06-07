@@ -17,4 +17,8 @@ const mockContacts = [
   },
 ];
 
-export { mockContacts };
+const departmentOptions = [
+  { value: "engineering", label: "Engineering" },
+  { value: "hr", label: "HR" },
+];
+export { mockContacts, departmentOptions };
