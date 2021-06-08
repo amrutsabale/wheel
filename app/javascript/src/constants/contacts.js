@@ -1,3 +1,4 @@
+import * as yup from "yup";
 const mockContacts = [
   {
     id: "1",
@@ -21,4 +22,27 @@ const departmentOptions = [
   { value: "engineering", label: "Engineering" },
   { value: "hr", label: "HR" },
 ];
-export { mockContacts, departmentOptions };
+
+const contactFormInitialValues = {
+  name: "",
+  email: "",
+  department: {},
+  contactNumber: "",
+  addedToBasecamp: false,
+};
+
+const contactFormValidationSchema = yup.object({
+  name: yup.string().required("Name is required"),
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  contactNumber: yup.string().required("Contact Number is required"),
+});
+
+export {
+  mockContacts,
+  departmentOptions,
+  contactFormInitialValues,
+  contactFormValidationSchema,
+};

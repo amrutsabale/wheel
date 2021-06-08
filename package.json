@@ -42,6 +42,7 @@
     "babel-preset-react": "^6.24.1",
     "classnames": "^2.2.6",
     "core-js": "3.7.0",
+    "dayjs": "^1.10.5",
     "formik": "^2.2.5",
     "js-logger": "^1.6.1",
     "moment": "^2.29.1",

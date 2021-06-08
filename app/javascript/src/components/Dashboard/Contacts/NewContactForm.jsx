@@ -1,9 +1,12 @@
 import React from "react";
-import * as yup from "yup";
 import { Formik, Form } from "formik";
 import { Input, Select, Switch } from "neetoui/formik";
 import { Button, Label } from "neetoui";
-import { departmentOptions } from "constants/contacts";
+import {
+  departmentOptions,
+  contactFormInitialValues,
+  contactFormValidationSchema,
+} from "constants/contacts";
 
 export default function NewContactForm({ onClose, refetch }) {
   const handleSubmit = () => {
@@ -12,36 +15,22 @@ export default function NewContactForm({ onClose, refetch }) {
   };
   return (
     <Formik
-      initialValues={{
-        name: "",
-        email: "",
-        department: {},
-        contactNumber: "",
-        addedToBasecamp: false,
-      }}
+      initialValues={contactFormInitialValues}
       onSubmit={handleSubmit}
-      validationSchema={yup.object({
-        name: yup.string().required("Name is required"),
-        email: yup
-          .string()
-          .email("Invalid email format")
-          .required("Email is required"),
-        contactNumber: yup.string().required("Contact Number is required"),
-      })}
+      validationSchema={contactFormValidationSchema}
     >
       {({ isSubmitting }) => (
-        <Form>
-          <Input label="Name" name="name" className="mb-6" />
-          <Input label="Email" name="email" className="mb-6" />
-          <Input label="Contact Number" name="contactNumber" className="mb-6" />
+        <Form className="space-y-6">
+          <Input label="Name" name="name" />
+          <Input label="Email" name="email" />
+          <Input label="Contact Number" name="contactNumber" />
           <Select
             label="Department"
             placeholder="Select a department"
             name="department"
             options={departmentOptions}
-            className="mb-6"
           />
-          <div className="flex justify-between mb-6">
+          <div className="flex justify-between">
             <Label>Add to Basecamp</Label>
             <Switch name="addedToBasecamp" />
           </div>
