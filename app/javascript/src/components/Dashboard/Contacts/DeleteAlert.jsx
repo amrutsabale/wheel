@@ -22,6 +22,7 @@ export default function DeleteAlert({ refetch, onClose, selectedContactIds }) {
       setDeleting(false);
     }
   };
+
   return (
     <Alert
       isOpen
