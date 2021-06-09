@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import { Input, Textarea, Select } from "neetoui/formik";
-import { Button, DateInput, Label, Switch } from "neetoui";
+import { Button, DateInput, Label, Switch, Collapse } from "neetoui";
 import notesApi from "apis/notes";
 import {
   contactOptions,
@@ -50,14 +50,14 @@ export default function NewNoteForm({ onClose, refetch }) {
             options={contactOptions}
           />
           <div className="mb-80">
-            <div className="flex justify-between">
+            <div className="flex justify-between mb-4">
               <Label>Add Due Date to Note</Label>
               <Switch
                 checked={isDueDateRequired}
                 onChange={e => setIsDueDateRequired(e.target.checked)}
               />
             </div>
-            {isDueDateRequired && (
+            <Collapse open={isDueDateRequired}>
               <DateInput
                 label="Due date"
                 format="DD/MM/YYYY"
@@ -65,7 +65,7 @@ export default function NewNoteForm({ onClose, refetch }) {
                 value={dueDate}
                 onChange={setDueDate}
               />
-            )}
+            </Collapse>
           </div>
           <div className="nui-pane__footer nui-pane__footer--absolute">
             <Button
