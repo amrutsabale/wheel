@@ -45,10 +45,7 @@ export default function NoteTable({
         </thead>
         <tbody>
           {notes.map(note => (
-            <tr
-              key={note.id}
-              className={"cursor-pointer bg-white hover:bg-gray-50"}
-            >
+            <tr key={note.id}>
               <td>
                 <Checkbox
                   checked={selectedNoteIds.includes(note.id)}
