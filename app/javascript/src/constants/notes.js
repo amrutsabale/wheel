@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 const mockNotes = [
   {
     id: "1",
@@ -50,4 +52,22 @@ const contactOptions = [
   { value: "john_smith", label: "John smith" },
 ];
 
-export { mockNotes, tagsColors, tagOptions, contactOptions };
+const noteFormInitialValues = {
+  title: "",
+  tags: {},
+  description: "",
+  contact: {},
+};
+const noteFormValidationSchema = yup.object({
+  title: yup.string().required("Title is required"),
+  description: yup.string().required("Description is required"),
+});
+
+export {
+  mockNotes,
+  tagsColors,
+  tagOptions,
+  contactOptions,
+  noteFormInitialValues,
+  noteFormValidationSchema,
+};

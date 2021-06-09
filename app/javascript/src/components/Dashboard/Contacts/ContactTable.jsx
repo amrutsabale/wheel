@@ -14,7 +14,7 @@ export default function ContactTable({
 
   return (
     <div className="w-full px-4">
-      <table className="nui-table nui-table--checkbox">
+      <table className="nui-table nui-table--checkbox nui-table--hover nui-table--actions">
         <thead>
           <tr>
             <th>
@@ -33,20 +33,17 @@ export default function ContactTable({
                 }}
               />
             </th>
-            <th className="text-left text-gray-500">Name</th>
-            <th className="text-left text-gray-500"> Email</th>
-            <th className="text-center text-gray-500">Department</th>
-            <th className="text-center text-gray-500">Contact Number</th>
-            <th className="text-center text-gray-500">Add to Basecamp</th>
+            <th className="text-left">Name</th>
+            <th className="text-left"> Email</th>
+            <th className="text-center">Department</th>
+            <th className="text-center">Contact Number</th>
+            <th className="text-center">Add to Basecamp</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {contacts.map(contact => (
-            <tr
-              key={contact.id}
-              className={"group cursor-pointer bg-white hover:bg-gray-50"}
-            >
+            <tr key={contact.id}>
               <td>
                 <Checkbox
                   checked={selectedContactIds.includes(contact.id)}
@@ -87,12 +84,12 @@ export default function ContactTable({
                   <Checkbox checked={contact.addedToBasecamp} />
                 </div>
               </td>
-              <td className="opacity-0 group-hover:opacity-100">
+              <td>
                 <div className="flex flex-row space-x-4 justify-end">
-                  <Tooltip content={"Edit"} position="bottom">
+                  <Tooltip content="Edit" position="bottom">
                     <Button style="icon" icon="ri-pencil-line" />
                   </Tooltip>
-                  <Tooltip content={"Delete"} position="bottom">
+                  <Tooltip content="Delete" position="bottom">
                     <Button
                       style="icon"
                       icon="ri-delete-bin-line"

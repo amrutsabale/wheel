@@ -1,3 +1,3 @@
-import moment from "moment";
+import dayjs from "dayjs";
 
-export const formattedDate = date => moment(date).format("ll");
+export const formattedDate = date => dayjs(date).format("YYYY-MM-DD");

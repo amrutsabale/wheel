@@ -16,7 +16,7 @@ export default function NoteTable({
 
   return (
     <div className="w-full px-4">
-      <table className="nui-table nui-table--checkbox">
+      <table className="nui-table nui-table--checkbox nui-table--hover nui-table--actions ">
         <thead>
           <tr>
             <th>
@@ -34,21 +34,18 @@ export default function NoteTable({
                 }}
               />
             </th>
-            <th className="text-left text-gray-500">Title</th>
-            <th className="text-left text-gray-500"> Description</th>
-            <th className="text-center text-gray-500">Tags</th>
-            <th className="text-center text-gray-500">Created Date</th>
-            <th className="text-center text-gray-500">Due Date</th>
-            <th className="text-center text-gray-500">Contact</th>
+            <th className="text-left">Title</th>
+            <th className="text-left"> Description</th>
+            <th className="text-center">Tags</th>
+            <th className="text-center">Created Date</th>
+            <th className="text-center">Due Date</th>
+            <th className="text-center">Contact</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {notes.map(note => (
-            <tr
-              key={note.id}
-              className={"group cursor-pointer bg-white hover:bg-gray-50"}
-            >
+            <tr key={note.id}>
               <td>
                 <Checkbox
                   checked={selectedNoteIds.includes(note.id)}
@@ -68,12 +65,7 @@ export default function NoteTable({
                 />
               </td>
               <td>
-                <Button
-                  type="link"
-                  className="text-purple-500"
-                  label={note.title}
-                  style="text"
-                />
+                <Button type="link" label={note.title} style="link" />
               </td>
               <td>
                 <div className="w-28 truncate">{note.description}</div>
@@ -94,12 +86,12 @@ export default function NoteTable({
                   contact={{ name: note.contact.label }}
                 />
               </td>
-              <td className="opacity-0 group-hover:opacity-100">
+              <td>
                 <div className="flex flex-row space-x-4 justify-end">
-                  <Tooltip content={"Edit"} position="bottom">
+                  <Tooltip content="Edit" position="bottom">
                     <Button style="icon" icon="ri-pencil-line" />
                   </Tooltip>
-                  <Tooltip content={"Delete"} position="bottom">
+                  <Tooltip content="Delete" position="bottom">
                     <Button
                       style="icon"
                       icon="ri-delete-bin-line"
